@@ -12,6 +12,7 @@ package model;
 public abstract class PaymentProcessor {
     
     protected double amount;
+    protected double finalAmount;
     public static final double TAX_PERCENTAGE = 20;
     
     public PaymentProcessor(double amount){
@@ -32,14 +33,14 @@ public abstract class PaymentProcessor {
     
     protected void calculateTax(StringBuilder log){
         double tax = amount * (TAX_PERCENTAGE / 100);
-        double finalamount = amount + tax;
+        finalAmount = amount + tax;
         log.append("Calculating ")
                 .append(TAX_PERCENTAGE)
                 .append("% GST: LKR ")
                 .append(String.format("%.2f", tax))
                 .append("\n");
         log.append("Final amount to be Paid: LKR")
-                .append(String.format("%.2f", finalamount))
+                .append(String.format("%.2f", finalAmount))
                 .append("\n");
     }
     

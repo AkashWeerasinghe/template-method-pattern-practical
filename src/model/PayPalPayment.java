@@ -8,31 +8,22 @@ package model;
  *
  * @author Akash Weerasinghe
  */
-public class CashPayment extends PaymentProcessor{
+public class PayPalPayment extends PaymentProcessor{
 
-    public CashPayment(double amount) {
+    public PayPalPayment(double amount) {
         super(amount);
     }
 
     @Override
-    protected void authenticate(StringBuilder log) {       
+    protected void authenticate(StringBuilder log) {
+        log.append("Redirecting to the PayPal login...\n");
     }
 
     @Override
     protected void pay(StringBuilder log) {
-        log.append("Collecting LKR ")
+        log.append("Processing PayPal payment of LKR ")
                 .append(String.format("%.2f", finalAmount))
-                .append(" in cash from customer...\n");
-    }
-
-    @Override
-    protected boolean needsAuthentication() {
-       return false;
-    }
-
-    @Override
-    protected boolean sendConfirmation() {
-        return false;
+                .append("...\n");
     }
     
 }
